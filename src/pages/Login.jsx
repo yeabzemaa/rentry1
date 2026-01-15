@@ -26,26 +26,36 @@ export default function Login() {
   }
 
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4 bg-gray-50 dark:bg-gray-900">
-      <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow w-full max-w-md mx-auto border border-gray-200/70 dark:border-gray-700">
-        <div className="flex items-center gap-2 mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6 text-indigo-600">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Zm0 2c-4.418 0-8 2.239-8 5v3h16v-3c0-2.761-3.582-5-8-5Z" />
-          </svg>
-          <h2 className="text-xl font-semibold">Sign in</h2>
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-50">
+        {/* Background Gradients - Adjusted for light theme */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-500/10 blur-[120px]" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px]" />
         </div>
-        <form className="space-y-4" onSubmit={onSubmit}>
+
+      <div className="relative z-10 w-full max-w-md p-8 bg-white/70 backdrop-blur-lg border border-white/50 rounded-2xl shadow-xl">
+        <div className="flex flex-col items-center gap-2 mb-8">
+          <div className="p-3 bg-indigo-600 rounded-xl shadow-lg shadow-indigo-600/20 mb-2">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6 text-white">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Zm0 2c-4.418 0-8 2.239-8 5v3h16v-3c0-2.761-3.582-5-8-5Z" />
+             </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Admin Portal</h2>
+          <p className="text-gray-500 text-sm">Enter your credentials to access the dashboard</p>
+        </div>
+
+        <form className="space-y-5" onSubmit={onSubmit}>
           <div>
-            <label className="block text-sm mb-1">Username</label>
-            <div className="relative">
-              <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5 ml-1">Username</label>
+            <div className="relative group">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400 group-focus-within:text-indigo-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Zm0 2c-4.418 0-8 2.239-8 5v3h16v-3c0-2.761-3.582-5-8-5Z" />
                 </svg>
               </span>
               <input
-                className="w-full h-10 pl-9 pr-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                placeholder="admin or email"
+                className="w-full h-11 pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                placeholder="admin"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -54,16 +64,17 @@ export default function Login() {
               />
             </div>
           </div>
+
           <div>
-            <label className="block text-sm mb-1">Password</label>
-            <div className="relative">
-              <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5 ml-1">Password</label>
+            <div className="relative group">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400 group-focus-within:text-indigo-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 11H7V8a5 5 0 0 1 10 0v3Zm-9 0h8v8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-8Z" />
                 </svg>
               </span>
               <input
-                className="w-full h-10 pl-9 pr-10 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                className="w-full h-11 pl-10 pr-11 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                 placeholder="••••••••"
                 type={showPassword ? 'text' : 'password'}
                 value={password}
@@ -73,9 +84,8 @@ export default function Login() {
               />
               <button
                 type="button"
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
                 onClick={() => setShowPassword((v) => !v)}
-                className="absolute inset-y-0 right-2 flex items-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors focus:outline-none"
               >
                 {showPassword ? (
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
@@ -91,15 +101,20 @@ export default function Login() {
               </button>
             </div>
           </div>
-          {error && <div className="text-sm text-rose-600">{error}</div>}
+
+          {error && <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-sm text-rose-600 text-center">{error}</div>}
+
           <button
             disabled={loading}
-            className="w-full h-10 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white rounded-lg font-medium inline-flex items-center justify-center gap-2"
+            className="w-full h-11 mt-2 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 text-white rounded-xl font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center gap-2"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`h-5 w-5 ${loading ? 'animate-pulse' : ''}`}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" />
-            </svg>
-            {loading ? 'Signing in…' : 'Sign in'}
+           {loading && (
+             <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+             </svg>
+           )}
+           {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
       </div>
